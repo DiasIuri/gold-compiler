@@ -1,0 +1,32 @@
+/*
+    GOLD - Gold over limits, dude
+    Author: Iuri Dias
+
+    Code sample in "Gold" language. The following code calculates
+    the factorial of a number.
+*/
+
+var
+    number, fatorial;
+
+begin
+    out('Digite o numero para calcular o fatorial: ');
+    in(number);
+    
+    if (number < 0) {
+        out('Serio?');
+    } else if(number >< 0) {
+        out('O fatorial é: 1');
+    } else {
+        fatorial <- number;
+        /*
+            Este é apenas um comentário no meio
+            do código para eu verificar a exclusão.
+        */
+        while(number > 2) {
+            fatorial <- (fatorial * (number - 1));
+            number <- (number - 1);
+        }
+
+        out('O fatorial e: ', fatorial);
+    }

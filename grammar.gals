@@ -1,0 +1,118 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = Stream
+Parser = LL
+#RegularDefinitions
+L: 	[A-Za-z]
+N: 	[0-9]
+WS: 	[\ \t\n\r]
+COMMENT : "/*" [^ "*" ]* "*/"
+#Tokens
+// ignore white spaces and comments
+:{WS}*
+:!{COMMENT}
+
+// elements
+id: {L}({L}|{N}|_)*
+number: {N}{N}*
+text: '.*'
+
+// statements
+var = id: "var"
+begin = id: "begin"
+if = id: "if"
+else = id: "else"
+while = id: "while"
+in = id: "in"
+out = id: "out"
+
+// symbols
+comma: ","
+dotcomma: ";"
+openParenthesis: "("
+closeParenthesis: ")"
+openCurlyBrackets: "{"
+closeCurlyBrackets: "}"
+apostrophe: "'"
+assignment: "<-"
+
+// logical
+less_than: "<"
+greater_than: ">"
+less_or_equal: "<="
+greater_or_equal: ">="
+equal: "><"
+different: "<>"
+
+// math
+add: "+"
+sub: "-"
+mult: "*"
+div: "/"
+#NonTerminals
+<PROGRAM>
+
+<VARIABLES>
+<VARIABLE_LIST>
+
+<STATEMENTS>
+<STATEMENT>
+
+<IF_STATEMENT>
+<ELSE_IF_LIST>
+<ELSE_IF>
+
+<VALUE>
+<SIGNAL>
+<ELEMENT>
+
+<OUT_ARGUMENT>
+<OUT_ARGUMENT_LIST>
+
+<LOGICAL_EXPRESSION>
+<LOGICAL_OPERATOR>
+
+<MATH_EXPRESSION>
+<MATH_EXPRESSION_LIST>
+<MATH_OPERATOR>
+#Grammar
+<PROGRAM>		::= var <VARIABLES> begin <STATEMENTS>;
+
+<VARIABLES>		::= id <VARIABLE_LIST> dotcomma;
+<VARIABLES>		::= î;
+<VARIABLE_LIST>		::= comma id <VARIABLE_LIST>;
+<VARIABLE_LIST>		::= î; 
+
+<STATEMENTS>		::= <STATEMENT> <STATEMENTS>;
+<STATEMENTS>		::= î;
+
+<STATEMENT> 		::= out openParenthesis <OUT_ARGUMENT> <OUT_ARGUMENT_LIST> closeParenthesis dotcomma;
+<STATEMENT> 		::= in openParenthesis id closeParenthesis dotcomma;
+<STATEMENT>		::= id assignment <VALUE> dotcomma;
+<STATEMENT>		::= while openParenthesis <LOGICAL_EXPRESSION> closeParenthesis openCurlyBrackets <STATEMENTS> closeCurlyBrackets;
+<STATEMENT>		::= <IF_STATEMENT>;
+
+<IF_STATEMENT>		::= if openParenthesis <LOGICAL_EXPRESSION> closeParenthesis openCurlyBrackets <STATEMENTS> closeCurlyBrackets <ELSE_IF_LIST>;
+<ELSE_IF_LIST>		::= else <ELSE_IF> | î;
+<ELSE_IF>		::= openCurlyBrackets <STATEMENTS> closeCurlyBrackets | <IF_STATEMENT>;
+
+<OUT_ARGUMENT>		::= text | id;
+<OUT_ARGUMENT_LIST>	::= comma <OUT_ARGUMENT> <OUT_ARGUMENT_LIST>;
+<OUT_ARGUMENT_LIST>	::= î;
+
+<SIGNAL>			::= sub | î;
+<ELEMENT>		::= id | number | openParenthesis <MATH_EXPRESSION> closeParenthesis;
+<VALUE>			::= <SIGNAL> <ELEMENT>;
+
+<LOGICAL_EXPRESSION>	::= <VALUE> <LOGICAL_OPERATOR> <VALUE>;
+<LOGICAL_OPERATOR>	::= less_than | greater_than | less_or_equal | greater_or_equal | equal | different;
+
+<MATH_EXPRESSION>		::= <VALUE> <MATH_OPERATOR> <VALUE>;
+<MATH_OPERATOR>		::= add | sub | mult | div;

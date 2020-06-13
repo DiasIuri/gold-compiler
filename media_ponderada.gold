@@ -1,0 +1,29 @@
+/*
+    GOLD - Gold over limits, dude
+    Author: Iuri Dias
+
+    Code sample in "Gold" language. The following code calculates
+    the weighted average of a set of grades.
+*/
+
+var
+    i, grade, weight, grade_acumulator, weight_acumulator;
+
+begin
+    i <- 1;
+    grade_acumulator <- 0;
+    weight_acumulator <- 0;
+
+    while (i <= 3)  {
+        out('Digite a ', i, 'a nota: ');
+        in(grade);
+        out('Digite o ', i, 'o peso: ');
+        in(weight);
+
+        grade_acumulator <- (grade_acumulator + (grade * weight));
+        weight_acumulator <- (weight_acumulator + weight);
+    }
+
+    final_grade <- (grade_acumulator / weight_acumulator);
+        
+    out('A media ponderada e: ', final_grade);
