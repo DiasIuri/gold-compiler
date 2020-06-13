@@ -1,2 +1,3 @@
-# gold-compiler
-GOLD: Gold over limits, dude
+# GOLD: Gold over limits, dude
+
+It is a very nice compiler (I hope so).
