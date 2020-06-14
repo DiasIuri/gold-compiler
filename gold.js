@@ -10,6 +10,7 @@ class goldCompiler {
     this.listTokens = args.includes('-lt') || args.includes('--listTokens');
     this.verbose = args.includes('-v') || args.includes('--verbose');
     this.sourceFile = args.find((file) => file.includes('.gold'));
+    this.goldconfig = '.goldconfig';
   }
 
   start() {
