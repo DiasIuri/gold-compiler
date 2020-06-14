@@ -21,9 +21,13 @@ class LexicalAnalyser {
     content = content.map(element => element.replace('\r', ''));
 
     for (var row in content) {
-      if ((content[row].trim() === '/*' && ignore === false) || (content[row].trim() === '*/' && ignore === true) || ignore === true) {
-        if (content[row].trim() === '/*') ignore = true;
-        else if (content[row].trim() === '*/') ignore = false;
+      if ((content[row].trim() === '/*' && ignore === false) ||
+          (content[row].trim() === '*/' && ignore === true) ||
+          ignore === true) {
+        if (content[row].trim() === '/*')
+          ignore = true;
+        else if (content[row].trim() === '*/')
+          ignore = false;
         content[row] = '';
       }
     }

@@ -30,3 +30,4 @@ begin
 
         out('O fatorial e: ', fatorial);
     }
+    

@@ -27,3 +27,4 @@ begin
     final_grade <- (grade_acumulator / weight_acumulator);
         
     out('A media ponderada e: ', final_grade);
+    

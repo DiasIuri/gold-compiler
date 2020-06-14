@@ -34,14 +34,15 @@ mult
 div
 
 #lexemes
-{L}({L}|{N}|_)*
-{N}{N}*
+L(LN_)*
+N(N)*
 '.*'
 var
 begin
 if
 else
-whilein
+while
+in
 out
 ,
 ;
