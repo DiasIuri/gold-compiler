@@ -1,11 +1,12 @@
 class SemanticAnalyser {
-  constructor(args){
+  constructor(args) {
     this.verbose = args.verbose;
-    if(this.verbose) console.log('Semantic Constructor.');
+    
+    if (this.verbose) console.log('Semantic Constructor.');
   }
   
-  start(){
-    if(this.verbose)
+  start() {
+    if (this.verbose)
       console.log('Semantic analyzer started sucessfully.');
   }
 }
