@@ -16,12 +16,12 @@ begin
     if (number < 0) {
         out('Serio?');
     } else if(number >< 0) {
-        out('O fatorial é: 1');
+        out('O fatorial e: 1');
     } else {
         fatorial <- number;
         /*
-            Este é apenas um comentário no meio
-            do código para eu verificar a exclusão.
+            Este e apenas um comentário no meio
+            do codigo para eu verificar a exclusao.
         */
         while(number > 2) {
             fatorial <- (fatorial * (number - 1));
