@@ -77,6 +77,9 @@ q0
 $final_states
 q3| q8| q10| q14| q19| q21| q24| q25| q26| q27| q28| q29| q30| q31| q32| q33| q34| q35| q36| q37| q38| q39| q40| q42| q43| q44| q45| q46| q47| q48
 
+$final_states_tokens
+var| begin| if| else| while| in| out| id| id| number| add| sub| mult| div| comma| dotcomma| openParenthesis| closeParenthesis| openCurlyBrackets| closeCurlyBrackets| apostrophe| less_than| greater_than| assignment| less_or_equal| different| greater_or_equal| equal| text| id
+
 $steps
 q0 v q1
 q1 a q2
@@ -109,9 +112,9 @@ q22 u q23
 q23 t q24
 
 q0 L q25
+q25 _ q26
 q25 L q25
 q25 N q26
-q25 _ q26
 q26 # q26
 
 q0 N q27
@@ -139,9 +142,11 @@ q0 } q37
 
 q0 ' q38
 
+q38 ' q47
 q38 . q41
-q41 . q41
+
 q41 ' q47
+q41 . q41
 
 q0 < q39
 
