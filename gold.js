@@ -17,7 +17,6 @@ class goldCompiler {
     if (this.verbose) console.log('Gold Compiler started sucessfully.');
 
     this.sanitizeGoldConfig();
-    this.sanitizeSourceCode();
   }
 
   sanitizeGoldConfig() {
@@ -89,12 +88,28 @@ class goldCompiler {
         // final_states
         config_set.final_states = config_set.final_states[0].split('| ');
 
+        // final_states_tokens
+        config_set.final_states_tokens = config_set.final_states_tokens[0].split('| ');
+
         // steps
+        let stepsObj = {};
+        let stepsArray = [];
 
+        for (let step of config_set.steps) {
+          let configuration = step.split(' ');
+          let actual_state = configuration[0];
+          let value = configuration[1];
+          let next_state = configuration[2];
+          
+          stepsObj[([actual_state, value])] = next_state;
+          stepsArray.push([ actual_state, value, next_state ]);
+        }
 
-        console.log(config_set);
-
+        config_set.stepsObj = stepsObj;
+        config_set.stepsArray = stepsArray;
         this.goldConfig = config_set;
+
+        this.sanitizeSourceCode();
       }
     });
   }
