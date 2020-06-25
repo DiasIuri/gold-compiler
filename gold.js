@@ -14,7 +14,7 @@ class goldCompiler {
   }
 
   start() {
-    if (this.verbose) console.log('Gold Compiler started sucessfully.');
+    if (this.verbose) console.log('\nGold Compiler started sucessfully.');
 
     this.sanitizeGoldConfig();
   }
