@@ -20,7 +20,7 @@ begin
     } else {
         fatorial <- number;
         /*
-            Este e apenas um comentário no meio
+            Este e apenas um comentario no meio
             do codigo para eu verificar a exclusao.
         */
         while(number > 2) {
