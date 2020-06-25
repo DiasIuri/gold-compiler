@@ -42,4 +42,4 @@ node gold [options] [script.js] [arguments]
 
 ## License
 
-[MIT]()
+[MIT](LICENSE)
