@@ -9,7 +9,7 @@ Seriously, **<span style="color:orange">Gold Compiler</span>** is a JavaScript-b
 The construction of **<span style="color:orange">Gold Compiler</span>** is divided into:
 
 **<span style="color:green">✓</span>** Lexical analysis <br />
-**<span style="color:#d00000">✗</span>** Syntax analisys <br />
+**<span style="color:#d00000">✗</span>** Syntax analysis <br />
 **<span style="color:#d00000">✗</span>** Semantic analysis <br />
 **<span style="color:#d00000">✗</span>** Generation of intermediate code <br />
 **<span style="color:#d00000">✗</span>** Final code generation <br />
