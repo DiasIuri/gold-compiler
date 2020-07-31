@@ -25,7 +25,7 @@ class LexicalAnalyser {
 
 function mountLexicalSet(configObj) {
   let steps = filtered_steps(configObj.goldConfig.stepsArray);
-
+  
   let current_state;
   let previous_state;
   let next_state;
@@ -199,6 +199,15 @@ function mountLexicalSet(configObj) {
     listTokens(configObj.resultSet, configObj.errors);
 }
 
+/**
+ * @summary A function to organize arrays of steps.
+ * @description Gets an array of step arrays and separate it by states and 
+ * valid characters for each state.
+ * @param stepsArray An array of arrays containing current state, 
+ * character and next state.
+ * @return An object where each key is a state and respective value is valid 
+ * characters for that state. 
+ */
 function filtered_steps(stepsArray) {
   let filtered_steps = {};
 
