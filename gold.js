@@ -7,7 +7,8 @@ const SemanticAnalyzer = require('./semanticAnalyzer');
 class goldCompiler {
   constructor(args) {
     this.arguments = args;
-    this.listTokens = args.includes('-lt') || args.includes('--listTokens');
+    this.listTokens = args.includes('-all') || args.includes('-lt') || args.includes('--listTokens');
+    this.listSyntactic = args.includes('-all') || args.includes('-ls') || args.includes('--listSyntactic');
     this.verbose = args.includes('-v') || args.includes('--verbose');
     this.sourceFile = args.find((file) => file.includes('.gold'));
     this.goldConfigFile = '.goldconfig';
@@ -19,6 +20,8 @@ class goldCompiler {
     this.sanitizeGoldConfig();
     this.sanitizeSourceCode();
     this.sendDataToLexical();
+    if (this.errors.length === 0) 
+      this.sendDataToSyntactic();
   }
 
   sanitizeGoldConfig() {
@@ -143,8 +146,15 @@ class goldCompiler {
   }
 
   sendDataToLexical() {
-    const lexical = new LexicalAnalyser(this);
-    lexical.start();
+    this.lexical = new LexicalAnalyser(this);
+    this.lexical.start();
+    this.tokensSet = this.lexical.resultSet;
+    this.errors = this.lexical.errors;
+  }
+  
+  sendDataToSyntactic() {
+    this.syntactic = new SyntacticAnalyzer(this);
+    this.syntactic.start();
   }
 }
 

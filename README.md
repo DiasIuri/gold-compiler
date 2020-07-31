@@ -9,7 +9,7 @@ Seriously, **<span style="color:orange">Gold Compiler</span>** is a JavaScript-b
 The construction of **<span style="color:orange">Gold Compiler</span>** is divided into:
 
 **<span style="color:green">✓</span>** Lexical analysis <br />
-**<span style="color:#d00000">✗</span>** Syntax analisys <br />
+**<span style="color:green">✓</span>** Syntax analisys <br />
 **<span style="color:#d00000">✗</span>** Semantic analysis <br />
 **<span style="color:#d00000">✗</span>** Generation of intermediate code <br />
 **<span style="color:#d00000">✗</span>** Final code generation <br />
@@ -27,17 +27,25 @@ node gold [options] [script.js] [arguments]
 
 <table>
 	<tr>
-    	<td>-lt, --listTokens</td>
-    	<td>shows a table that displays each tokens in script</td>
-    </tr>
+   	<td>-lt, --listTokens</td>
+   	<td>shows a table that displays each tokens in script</td>
+  </tr>
+	<tr>
+   	<td>-ls, --listSyntactic</td>
+   	<td>shows syntax analisys log</td>
+  </tr>
+	<tr>
+   	<td>-all</td>
+   	<td>shows all compilation tables and logs</td>
+  </tr>
 </table>
 
 #### Arguments
 <table>
-    <tr>
-    	<td>-v, --verbose</td>
-    	<td>shows hidden execution messages</td>
-    </tr>
+   <tr>
+   	<td>-v, --verbose</td>
+   	<td>shows hidden execution messages</td>
+   </tr>
 </table>
 
 ## License
