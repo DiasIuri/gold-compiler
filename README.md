@@ -20,7 +20,7 @@ You will need to have Node.js installed on your machine.
 After that, open your terminal in the project folder and run:
 
 ```bash
-node gold [options] [script.js] [arguments]
+node gold [options] [script.gold] [arguments]
 ```
 
 #### Options
