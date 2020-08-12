@@ -31,8 +31,6 @@ class goldCompiler {
     try {
       let file_content = fs.readFileSync(this.goldConfigFile, 'utf8');
 
-      if (this.verbose) console.log(`File ${this.goldConfigFile} opened sucessfully.`);
-     
       content = 
         file_content.
         split('$').
@@ -112,6 +110,8 @@ class goldCompiler {
       config_set.stepsObj = stepsObj;
       config_set.stepsArray = stepsArray;
       this.goldConfig = config_set;
+      
+      if (this.verbose) console.log(`File ${this.goldConfigFile} opened sucessfully.`);
     } catch {
       console.log(`Error opening ${this.goldConfigFile} file. Check the specified path.`);
     }
@@ -120,11 +120,10 @@ class goldCompiler {
   sanitizeSourceCode() {
     let content;
     let ignore = false;
-    let file_content = fs.readFileSync(this.sourceFile, 'utf8');
-
+    
     try {
-      if (this.verbose) console.log(`File ${this.sourceFile} opened sucessfully.`);
-
+      let file_content = fs.readFileSync(this.sourceFile, 'utf8');
+      
       content = file_content.split('\n').map(element => element.replace('\r', ''));
 
       for (let row in content) {
@@ -140,6 +139,8 @@ class goldCompiler {
       }
 
       this.sourceCode = content;
+      
+      if (this.verbose) console.log(`File ${this.sourceFile} opened sucessfully.`);
     } catch {
       console.log(`Error opening ${this.sourceFile} file. Check the specified path.`);
     }
@@ -155,6 +156,7 @@ class goldCompiler {
   sendDataToSyntactic() {
     this.syntactic = new SyntacticAnalyzer(this);
     this.syntactic.start();
+    this.errors = this.syntactic.error;
   }
 }
 
