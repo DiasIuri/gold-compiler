@@ -1,4 +1,4 @@
-class SemanticAnalyser {
+class SemanticAnalyzer {
   constructor(args) {
     this.verbose = args.verbose;
     
@@ -11,4 +11,4 @@ class SemanticAnalyser {
   }
 }
 
-module.exports = SemanticAnalyser;
+module.exports = SemanticAnalyzer;

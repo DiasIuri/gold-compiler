@@ -1,4 +1,4 @@
-class SyntaticAnalyser {
+class SyntaticAnalyzer {
   constructor(args) {
     this.verbose = args.verbose;
     this.listSyntactic = args.listSyntactic;
@@ -186,4 +186,4 @@ class SyntaticAnalyser {
   }
 }
 
-module.exports = SyntaticAnalyser;
+module.exports = SyntaticAnalyzer;

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const LexicalAnalyser = require('./lexicalAnalyzer');
+const LexicalAnalyzer = require('./lexicalAnalyzer');
 const SyntacticAnalyzer = require('./syntacticAnalyzer');
 const SemanticAnalyzer = require('./semanticAnalyzer');
 
@@ -146,7 +146,7 @@ class goldCompiler {
   }
 
   sendDataToLexical() {
-    this.lexical = new LexicalAnalyser(this);
+    this.lexical = new LexicalAnalyzer(this);
     this.lexical.start();
     this.tokensSet = this.lexical.resultSet;
     this.errors = this.lexical.errors;

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class LexicalAnalyser {
+class LexicalAnalyzer {
   constructor(args) {
     this.verbose = args.verbose;
     this.goldConfig = args.goldConfig;
@@ -262,4 +262,4 @@ function listErrors(errors) {
   }
 }
 
-module.exports = LexicalAnalyser;
+module.exports = LexicalAnalyzer;
