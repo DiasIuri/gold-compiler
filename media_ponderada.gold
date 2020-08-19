@@ -7,7 +7,7 @@
 */
 
 var
-    i, grade, weight, grade_acumulator, weight_acumulator;
+    i, grade, weight, grade_acumulator, weight_acumulator, final_grade;
 
 begin
     i <- 1;
