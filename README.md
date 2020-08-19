@@ -10,8 +10,8 @@ The construction of **<span style="color:orange">Gold Compiler</span>** is divid
 
 **<span style="color:green">✓</span>** Lexical analysis <br />
 **<span style="color:green">✓</span>** Syntax analisys <br />
-**<span style="color:#d00000">✗</span>** Semantic analysis <br />
-**<span style="color:#d00000">✗</span>** Generation of intermediate code <br />
+**<span style="color:green">✓</span>** Semantic analysis <br />
+**<span style="color:#d00000">...</span>** Generation of intermediate code <br />
 **<span style="color:#d00000">✗</span>** Final code generation <br />
 
 ## How to run 
@@ -33,6 +33,10 @@ node gold [options] [script.gold] [arguments]
 	<tr>
    	<td>-ls, --listSyntactic</td>
    	<td>shows syntax analisys log</td>
+  </tr>
+	<tr>
+   	<td>-lse, --listSemantic</td>
+   	<td>shows semantic analisys log</td>
   </tr>
 	<tr>
    	<td>-all</td>

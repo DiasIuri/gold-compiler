@@ -9,6 +9,7 @@ class goldCompiler {
     this.arguments = args;
     this.listTokens = args.includes('-all') || args.includes('-lt') || args.includes('--listTokens');
     this.listSyntactic = args.includes('-all') || args.includes('-ls') || args.includes('--listSyntactic');
+    this.listSemantic = args.includes('-all') || args.includes('-lse') || args.includes('--listSemantic');
     this.verbose = args.includes('-v') || args.includes('--verbose');
     this.sourceFile = args.find((file) => file.includes('.gold'));
     this.goldConfigFile = '.goldconfig';
@@ -22,6 +23,8 @@ class goldCompiler {
     this.sendDataToLexical();
     if (this.errors.length === 0) 
       this.sendDataToSyntactic();
+    if (!this.errors)
+      this.sendDataToSemantic();
   }
 
   sanitizeGoldConfig() {
@@ -157,6 +160,12 @@ class goldCompiler {
     this.syntactic = new SyntacticAnalyzer(this);
     this.syntactic.start();
     this.errors = this.syntactic.error;
+  }
+  
+  sendDataToSemantic() {
+    this.semantic = new SemanticAnalyzer(this);
+    this.semantic.start();
+    this.errors = this.semantic.errors;
   }
 }
 
