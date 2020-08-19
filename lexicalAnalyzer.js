@@ -193,7 +193,10 @@ class LexicalAnalyzer {
     }
 
     if (this.listTokens)
-      this.showTokensList(this.resultSet, this.errors);
+      this.showTokensList();
+      
+    if (this.errors.length)
+      this.showErrorsList();
   }
 
   /**
@@ -218,8 +221,8 @@ class LexicalAnalyzer {
     return filtered_steps;
   }
 
-  showTokensList(resultSet, errors) {
-    if (resultSet.length) {
+  showTokensList() {
+    if (this.resultSet.length) {
       let ws = ' ';
       console.log('\n');
       console.log(
@@ -229,21 +232,19 @@ class LexicalAnalyzer {
         '| \x1b[33m COLUMN \x1b[0m |');
       console.log('-'.repeat(54));
 
-      for (let item of resultSet)
+      for (let item of this.resultSet)
         console.log(
           `|  \x1b[31m${item.token}\x1b[0m${ws.repeat(18 - item.token.length)}  |  \x1b[32m${item.lexeme}\x1b[0m  |  \x1b[33m${item.row}\x1b[0m  |  \x1b[33m${item.column}\x1b[0m  |`
         );
-
-      if (errors.length) this.showErrorsList(errors);
 
       console.log('\n');
     }
   }
 
-  showErrorsList(errors) {
+  showErrorsList() {
     console.log('\n-- Errors --');
 
-    for (let item of errors) {
+    for (let item of this.errors) {
       switch (item.error_code) {
         case 0:
           console.log(
