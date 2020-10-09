@@ -30,6 +30,7 @@ class goldCompiler {
       this.sendDataToSemantic();
     if (this.errors.length === 0)
       this.mountIntermediateCode();
+    this.mountFinalCode();
   }
 
   sanitizeGoldConfig() {
@@ -177,6 +178,11 @@ class goldCompiler {
   mountIntermediateCode() {
     this.intermediate = new IntermediateAssembler(this);
     this.intermediate.start();
+  }
+  
+  mountFinalCode() {
+    this.final = new FinalAssembler(this);
+    this.final.start();
   }
 }
 
