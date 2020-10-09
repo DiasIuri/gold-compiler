@@ -1,0 +1,26 @@
+_var #temp0
+_var i
+_var grade
+_var weight
+_var grade_acumulator
+_var weight_acumulator
+_var final_grade
+i := 1
+grade_acumulator := 0
+weight_acumulator := 0
+WHILE i <= 3
+OUTPUT 'Digite a '
+OUTPUT i
+OUTPUT 'a nota: '
+INPUT grade
+OUTPUT 'Digite o '
+OUTPUT i
+OUTPUT 'o peso: '
+INPUT weight
+$temp0 := grade weight *
+grade_acumulator := grade_acumulator #temp0 +
+weight_acumulator := weight_acumulator weight +
+ENDWHILE
+final_grade := grade_acumulator weight_acumulator /
+OUTPUT 'A media ponderada e: '
+OUTPUT final_grade
