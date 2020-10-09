@@ -6,8 +6,6 @@ class LexicalAnalyzer {
     this.listTokens = args.listTokens;
     this.resultSet = [];
     this.errors = [];
-    
-    if (this.verbose) console.log('Lexical Constructor.');
   }
   
   start() {

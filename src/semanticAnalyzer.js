@@ -4,8 +4,6 @@ class SemanticAnalyzer {
     this.listSemantic = args.listSemantic;
     this.tokensSet = args.tokensSet;
     this.errors = [];
-    
-    if (this.verbose) console.log('Semantic Constructor.');
   }
   
   start() {
@@ -190,6 +188,8 @@ class SemanticAnalyzer {
     
     for (let id of this.declared_ids_unique)
       console.log(id);
+      
+    console.log('\n');
   }
   
   showErrorsList() {

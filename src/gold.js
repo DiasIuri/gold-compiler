@@ -3,6 +3,7 @@ const fs = require('fs');
 const LexicalAnalyzer = require('./lexicalAnalyzer');
 const SyntacticAnalyzer = require('./syntacticAnalyzer');
 const SemanticAnalyzer = require('./semanticAnalyzer');
+const IntermediateAssembler = require('./intermediateAssembler');
 
 class goldCompiler {
   constructor(args) {
@@ -10,9 +11,11 @@ class goldCompiler {
     this.listTokens = args.includes('-all') || args.includes('-lt') || args.includes('--listTokens');
     this.listSyntactic = args.includes('-all') || args.includes('-ls') || args.includes('--listSyntactic');
     this.listSemantic = args.includes('-all') || args.includes('-lse') || args.includes('--listSemantic');
+    this.listLog = args.includes('-all') || args.includes('-lgc') || args.includes('--listLog');
     this.verbose = args.includes('-v') || args.includes('--verbose');
     this.sourceFile = args.find((file) => file.includes('.gold'));
     this.goldConfigFile = '.goldconfig';
+    this.intermediateFile = this.sourceFile.replace('.gold', '.igold');
   }
 
   start() {
@@ -25,6 +28,8 @@ class goldCompiler {
       this.sendDataToSyntactic();
     if (!this.errors)
       this.sendDataToSemantic();
+    if (this.errors.length === 0)
+      this.mountIntermediateCode();
   }
 
   sanitizeGoldConfig() {
@@ -165,7 +170,13 @@ class goldCompiler {
   sendDataToSemantic() {
     this.semantic = new SemanticAnalyzer(this);
     this.semantic.start();
+    this.declaredIds = this.semantic.declared_ids_unique;
     this.errors = this.semantic.errors;
+  }
+  
+  mountIntermediateCode() {
+    this.intermediate = new IntermediateAssembler(this);
+    this.intermediate.start();
   }
 }
 

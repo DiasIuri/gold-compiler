@@ -2,13 +2,7 @@ class SyntaticAnalyzer {
   constructor(args) {
     this.verbose = args.verbose;
     this.listSyntactic = args.listSyntactic;
-    this.tokensSet = args.tokensSet.slice(0);
-    
-    if (this.verbose) console.log('Syntatic Constructor.');
-    
-    Array.prototype.clone = function() {
-      return this.slice(0);
-    };    
+    this.tokensSet = this.clone(args.tokensSet);
   }
   
   start() {
@@ -187,6 +181,10 @@ class SyntaticAnalyzer {
       
       i++;
     }
+  }
+  
+  clone(arr) {
+    return arr.slice(0);
   }
 }
 
