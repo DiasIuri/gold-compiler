@@ -65,7 +65,6 @@ class FinalAssembler {
         main.push(`# Line ${lineInCode + 1} - Input \n`);
         main.push('jal userInput\n');
         main.push(`sw $v0, ${lineElements[1]}\n`);
-        main.push('jal breakLine\n');
         main.push('\n');
       } else if (lineElements[0] === 'OUTPUT') {
         main.push(`# Line ${lineInCode + 1} - Output \n`);
