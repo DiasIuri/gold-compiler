@@ -1,4 +1,4 @@
-_var #temp0
+_var $t0
 _var i
 _var grade
 _var weight
@@ -17,9 +17,10 @@ OUTPUT 'Digite o '
 OUTPUT i
 OUTPUT 'o peso: '
 INPUT weight
-$temp0 := grade weight *
-grade_acumulator := grade_acumulator #temp0 +
+$t0 := grade weight *
+grade_acumulator := grade_acumulator $t0 +
 weight_acumulator := weight_acumulator weight +
+i := i 1 +
 ENDWHILE
 final_grade := grade_acumulator weight_acumulator /
 OUTPUT 'A media ponderada e: '

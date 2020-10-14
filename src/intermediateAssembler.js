@@ -2,6 +2,8 @@ const fs = require('fs');
 const prompt = require('prompt');
 const postfix = require('infix-to-postfix');
 
+const FinalAssembler = require('./finalAssembler');
+
 prompt.start();
 
 class IntermediateAssembler {
@@ -14,6 +16,7 @@ class IntermediateAssembler {
     this.intermediateLog = [];
     this.intermediateCode = [];
     this.tempVarNumber = 0;
+    this.finalFile = args.finalFile;
   }
   
   start() {
@@ -39,18 +42,18 @@ class IntermediateAssembler {
     
     prompt.get(['answer'], (err, result) => {
       if (err)
-        return console.log(err);
-        
-      const answer = result.answer.toUpperCase();
+      return console.log(err);
       
-      if (answer === 'Y' || answer === 'YES') {
+      let input = result.answer.toUpperCase();
+      
+      if (input === 'Y' || input === 'YES') {
         fs.unlinkSync(this.intermediateFile);
         if (this.verbose)
           console.log('\nIntermediate file cleaned successfully.');
         this.createIntermediateFile();
-      } else if (answer === 'N' || answer === 'NO') {
+      } else if (input === 'N' || input === 'NO') {
         if (this.verbose)
-          console.log('You have chosen to keep the file, no changes have been made.');
+        console.log('You have chosen to keep the file, no changes have been made.');
       } else this.checkOverwrite();
     });
   }
@@ -111,10 +114,15 @@ class IntermediateAssembler {
         this.intermediateCode.push('IF ' + expression.join().replace(/,/g, ' '));
         this.intermediateLog.push('If statement found.');
       } else if (token.lexeme === 'else') {
-        lastCurlyBracketOpener = 'ELSE';
-        
-        this.intermediateCode.push('ELSE');
-        this.intermediateLog.push('Else statement found.');
+        if (this.tokensSet[index + 1].lexeme === 'if') {
+          lastCurlyBracketOpener = 'ELIF';
+          this.intermediateCode.push('ELIF');
+          this.intermediateLog.push('Elif statement found.');
+        } else {
+          lastCurlyBracketOpener = 'ELSE';
+          this.intermediateCode.push('ELSE');
+          this.intermediateLog.push('Else statement found.');
+        } 
       } else if (token.lexeme === 'while') {
         lastCurlyBracketOpener = 'WHILE';
         
@@ -225,6 +233,8 @@ class IntermediateAssembler {
     }
     
     console.log('Intermediate file built.');
+    
+    this.createFinalCode();
   }
   
   convertPostfixTo3Address(id, expression) {
@@ -233,12 +243,12 @@ class IntermediateAssembler {
       
       if (expression.length > 3) {
         if (item == "+" || item == "-" || item == "*" || item == "/") {
-          this.intermediateCode.unshift("_var #temp" + this.tempVarNumber);
+          this.intermediateCode.unshift("_var $t" + this.tempVarNumber);
           
           let expression3Address =
-            `$temp${this.tempVarNumber} := ${expression[index-2]} ${expression[index-1]} ${item}`;
+            `$t${this.tempVarNumber} := ${expression[index-2]} ${expression[index-1]} ${item}`;
           
-          expression.splice(index-2, 3, `#temp${this.tempVarNumber}`);
+          expression.splice(index-2, 3, `$t${this.tempVarNumber}`);
           index = index-2;
 
           this.tempVarNumber++;
@@ -251,6 +261,11 @@ class IntermediateAssembler {
         break;
       }
     };
+  }
+  
+  createFinalCode() {
+    this.final = new FinalAssembler(this);
+    this.final.start();
   }
 }
 

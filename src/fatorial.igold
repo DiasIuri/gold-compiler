@@ -1,4 +1,4 @@
-_var #temp0
+_var $t0
 _var number
 _var fatorial
 OUTPUT 'Digite o numero para calcular o fatorial: '
@@ -6,15 +6,15 @@ INPUT number
 IF number < 0
 OUTPUT 'Serio?'
 ENDIF
-ELSE
+ELIF
 IF number >< 0
 OUTPUT 'O fatorial e: 1'
 ENDIF
 ELSE
 fatorial := number
 WHILE number > 2
-$temp0 := number 1 -
-fatorial := fatorial #temp0 *
+$t0 := number 1 -
+fatorial := fatorial $t0 *
 number := number 1 -
 ENDWHILE
 OUTPUT 'O fatorial e: '
