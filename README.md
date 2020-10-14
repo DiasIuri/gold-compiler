@@ -12,7 +12,7 @@ The construction of **<span style="color:orange">Gold Compiler</span>** is divid
 **<span style="color:green">✓</span>** Syntax analisys <br />
 **<span style="color:green">✓</span>** Semantic analysis <br />
 **<span style="color:green">✓</span>** Generation of intermediate code <br />
-**<span style="color:#d00000">...</span>** Final code generation <br />
+**<span style="color:green">✓</span>** Final code generation <br />
 
 ## How to run 
 

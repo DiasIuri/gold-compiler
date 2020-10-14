@@ -16,6 +16,7 @@ class goldCompiler {
     this.sourceFile = args.find((file) => file.includes('.gold'));
     this.goldConfigFile = '.goldconfig';
     this.intermediateFile = this.sourceFile.replace('.gold', '.igold');
+    this.finalFile = this.sourceFile.replace('.gold', '.asm');
   }
 
   start() {
@@ -30,7 +31,6 @@ class goldCompiler {
       this.sendDataToSemantic();
     if (this.errors.length === 0)
       this.mountIntermediateCode();
-    this.mountFinalCode();
   }
 
   sanitizeGoldConfig() {
@@ -178,11 +178,7 @@ class goldCompiler {
   mountIntermediateCode() {
     this.intermediate = new IntermediateAssembler(this);
     this.intermediate.start();
-  }
-  
-  mountFinalCode() {
-    this.final = new FinalAssembler(this);
-    this.final.start();
+    this.intermediateCode = this.intermediate.intermediateCode;
   }
 }
 
